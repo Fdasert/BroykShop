@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { FaTrash } from 'react-icons/fa'
 
 export class Orderjs extends Component {
   render() {
@@ -7,9 +8,10 @@ export class Orderjs extends Component {
             <img src={"./img/" + this.props.item.img} />
             <h2>{this.props.item.title}</h2>
             <b>{this.props.item.price}₽</b>
+            <FaTrash className='delete-icon' onClick={() => this.props.onDelete(this.props.item.id)} />
       </div>
     )
   }
 }
 
-export default Orderjs
+export default Orderjs  
