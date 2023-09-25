@@ -2,19 +2,21 @@ import React from "react";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Items from "./components/Items";
+import Categories from "./components/Categories";
 
 class App extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
       orders: [],
+      currentItems: [],
       items: [
         {
             "id": 1,
             "title": "Продукт 1",
             "img": "kros.png",
             "desc": "Описание продукта 1",
-            "category": "Категория 1",
+            "category": "sneakers",
             "price": 10.99
           },
           {
@@ -22,7 +24,7 @@ class App extends React.Component {
             "title": "Продукт 2",
             "img": "kros2.png",
             "desc": "Описание продукта 2",
-            "category": "Категория 2",
+            "category": "sneakers",
             "price": 19.99
           },
           {
@@ -30,7 +32,7 @@ class App extends React.Component {
             "title": "Продукт 3",
             "img": "kros3.png",
             "desc": "Описание продукта 3",
-            "category": "Категория 1",
+            "category": "sneakers",
             "price": 8.49
           },
           {
@@ -38,7 +40,7 @@ class App extends React.Component {
             "title": "Продукт 4",
             "img": "kros6.png",
             "desc": "Описание продукта 4",
-            "category": "Категория 3",
+            "category": "sneakers",
             "price": 15.29
           },
           {
@@ -46,7 +48,7 @@ class App extends React.Component {
             "title": "Продукт 5",
             "img": "kros5.png",
             "desc": "Описание продукта 5",
-            "category": "Категория 2",
+            "category": "sneakers",
             "price": 12.99
           },
           {
@@ -54,22 +56,37 @@ class App extends React.Component {
             "title": "Продукт 6",
             "img": "kros7.png",
             "desc": "Описание продукта 6",
-            "category": "Категория 3",
+            "category": "sneakers",
             "price": 7.99
           }
       ]
     }
+    this.state.currentItems = this.state.items
     this.addToOrder = this.addToOrder.bind(this);
     this.deleteOrder = this.deleteOrder.bind(this);
+    this.chooseCategory = this.chooseCategory.bind(this);
   }
   render() {
   return (
     <div className="wrapper">
       <Header orders={this.state.orders} onDelete={this.deleteOrder} />
-      <Items items={this.state.items} onAdd={this.addToOrder}/>
+      <Categories chooseCategory={this.chooseCategory} />
+      <Items items={this.state.currentItems} onAdd={this.addToOrder}/>
       <Footer />
     </div>
   )
+}
+
+
+chooseCategory(category) {
+  if(category === 'all') {
+    this.setState({ currentItems: this.state.items })
+    return
+  }
+
+  this.setState({
+    currentItems: this.state.items.filter(el => el.category === category)
+  })
 }
 
 deleteOrder(id) {
