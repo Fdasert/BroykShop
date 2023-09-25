@@ -195,24 +195,25 @@ main .item {
     position: relative;
     padding-bottom: 20px;
 }
-main .item img {
+main .item img, .full-item img {
     width: 100%;
     transition: transform 500ms ease;
+    cursor: pointer;
 }
 
-main .item img:hover {
+main .item img:hover, .full-item img:hover {
     transform: scale(1.03);
 }
 
-main h2, main p, main b {
+main h2, main p, main b, .full-item b, .full-item h2, .full-item p {
     margin: 10px 20px
 } 
 
-main b {
+main b, .full-item b{
     color: black;
 }
 
-main .add-to-cart {
+main .add-to-cart, .full-item .add-to-cart {
     position: absolute;
     right: 20px;
     bottom: 20px;
@@ -227,7 +228,27 @@ main .add-to-cart {
     font-weight: 600;
     transition: transform 500ms ease;
 }
-main .add-to-cart:hover {
+main .add-to-cart:hover, .full-item .add-to-cart:hover {
     transform: scale(1.05);
 
+}
+
+.full-item {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgb(0, 0, 0, 0.8);
+    z-index: 1000;
+    overflow:visible;
+}
+
+.full-item > div {
+    width: 600px;
+    position: relative;
+    margin: 10% auto;
+    padding: 40px 30px;
+    background: #fff;
+    border-radius: 6px;
 }
